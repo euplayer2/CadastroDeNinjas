@@ -1,18 +1,24 @@
-package dev.jon.CadastroDeNinjas;
+package dev.jon.CadastroDeNinjas.Ninjas;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import dev.jon.CadastroDeNinjas.Missoes.MissoesModel;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "cadastro_de_ninjas")
+@Table(name = "tb_-cadastro")
 public class NinjaModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private int idade;
+
+    // um ninjan por missao
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissoesModel missoes;
+
 
     public NinjaModel() {
     }
